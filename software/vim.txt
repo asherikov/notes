@@ -1,0 +1,103 @@
+blackmagic
+==========
+I dont remeber what it does
+
+    :%s/\[[^[\]\[]*\]/\r&\r/g
+    filter
+    :%g/^\[[^[\]\[]*\]/.!tr "DQAЫ╚E█цIZNSTхг" "ðæɑːəɛɔʌɪʒŋʃθˈˌ"
+    :%s/\n^\(\[[^[\]\[]*\]\)\n/\1/g
+
+
+
+Execute command in each open file
+=================================
+    (argdo, bufdo)
+    :bufdo! %s/set_global_options;//ge
+
+
+
+Copy chars from previous/next string
+====================================
+    C-Y
+    C-E
+
+
+
+Replace all extraneous ^M
+=========================
+    :%s/<ctrl-v><enter>$//
+
+
+
+Delete lines
+============
+    :g/^$/d
+    :%g/<pattern>/d
+
+
+
+Indent
+======
+    gg=G
+
+
+
+Search for long lines
+=====================
+Search for all the lines containing more than 80 characters:
+    /^.\{80}.*$
+    /^.*\%80c.*$
+
+
+
+Break lines
+===========
+Break the long lines in a file to the length defined by the 'textwidth' option
+
+    set textwidth=70
+    :g/./normal gqq
+
+
+
+Movement
+========
+    % - jump to matching
+        ([{}])
+        /* */
+        #if, #ifdef, #else, #elif, #endif
+
+    h - move one character left
+    j - move one row down
+    k - move one row up
+    l - move one char. right.
+    w - move to begining of next word
+    b - move to begining of previous word
+    e - move to end of word
+    W - move to begining of next word after a whitespace
+    B - move to begining of pervious word before a whitespace
+    E - move to end of word before a whitespace.
+
+    ^  - move to first non blank char of the line.
+    g_ - move to last non blank char of the line.
+    0  - move to begining of line
+    $  - move to end of line.
+    gg - move to first line.
+    G  - move to last line.
+    nG - move to "n"th line.
+
+    H  - top of screen.
+    M  - middle of screen
+    L  - bottom of screen
+
+    Ctrl-D - move half page down
+    Ctrl-U - move half page up.
+    Ctrl-B - page-up
+    Ctrl-F - page down.    n - next matching search pattern
+
+
+    N - previous matching search pattern
+    * - next word under cursor
+    # - previous word under cursor.
+
+    g* - next matching search pattern under cursor.
+    g# - previous matching search pattern under cursor.

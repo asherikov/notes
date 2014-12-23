@@ -1,0 +1,77 @@
+Trimming
+========
+delete pieces before N-th second and after M-th second
+
+    mencoder -ss N -endpos M -oac copy -ovc copy in.mp4 -o out.mp4
+
+
+
+Capture from the screen
+=======================
+    ffmpeg -an -t 32 -f x11grab -s hd720 -i :0.0 -y -sameq out.mp4
+
+
+
+Changing playback speed
+=======================
+    mencoder -speed 0.2 -nosound -ovc copy -of lavf in.mp4 -o out.mp4
+
+
+
+Rotation
+========
+    mencoder -vf rotate=2:harddup -mc 0 -oac pcm -ovc lavc in.mp4 -o out.mp4
+
+
+
+Rotation + cropping
+===================
+    mencoder -vf crop=720:720:230:0 -vf-add rotate=2:harddup -mc 0 -oac pcm -ovc lavc -lavcopts vbitrate=5000 in.mp4 -o out.mp4
+
+
+
+Build video from images
+=======================
+    ffmpeg -f image2 -r 2 -i demo%d.png -vcodec libx264 out.mp4
+
+    ffmpeg -y -f image2 -r 40 -i demo-%d.png -vcodec libx264 -vf 'crop=540:460:30:70,scale=540:trunc(ow/a/2)*2'  out.mp4
+
+
+
+Empty video (black screen)
+==========================
+    ffmpeg -y -t 5 -s 1080x458 -f rawvideo -pix_fmt rgb24 -r 25 -i /dev/zero video-black.mp4
+
+
+
+Overlay text
+============
+    ffmpeg -y -i in.mp4 \
+        -vf drawtext="fontfile=/usr/local/lib/X11/fonts/dejavu/DejaVuSansMono.ttf:textfile=text.txt:fontcolor=white:fontsize=30:x=(w-text_w)/2:y=(h-text_h)/2" \
+        out.mp4
+
+
+
+Tiled video
+===========
+The first tile is padded, then the second video is overlayed over the empty part:
+
+    ffmpeg -y -i tile1.mp4 -i tile2.mp4 \
+        -filter_complex '[0:v]pad=iw*2:ih:0:0[tmp1];[tmp1][1:v]overlay=W/2:0[vid]' \
+        -map '[vid]' -c:v libx264 out.mp4
+
+
+
+Concatenation
+=============
+    ffmpeg -y -i video1.mp4 -i video2.mp4 -i video3.mp4 \
+        -filter_complex "[0:v] [1:v] concat[tmp1] ; [tmp1] [2:v] concat [vid]" -map '[vid]' -c:v libx264 out.mp4
+
+
+
+Video with static image in background
+=====================================
+    ffmpeg  -loop 1 -i background.png -i video.mp4 \
+        -filter_complex '[0:v][1:v]overlay=1300:150:shortest=1[vid]' -map '[vid]' \
+        -c:v libx264 -y out.mp4
+

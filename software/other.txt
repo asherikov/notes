@@ -1,0 +1,25 @@
+Sort installed packages by size in Ubuntu
+=========================================
+    dpkg-query -Wf ‘${Installed-Size}\t${Package}\t${Status}\n’ | sort -n
+
+
+
+Get links from an html file
+===========================
+    lynx -dump -listonly "<file>" | grep '<mask>' | awk '{print $2}' | sort | uniq > list
+
+
+
+Ignore mismatching keys when connecting with ssh
+================================================
+    -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+
+
+
+Remote X server
+===============
+On the client:
+    export DISPLAY=10.10.10.1:0 
+
+On the server:
+    xhost +inet:10.10.10.2

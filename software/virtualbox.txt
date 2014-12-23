@@ -1,0 +1,36 @@
+Time offset for a virtual machine with respect to the host time
+===============================================================
+    <BIOS>
+    <TimeOffset value="-63072000000"/>
+    </BIOS>
+
+
+
+Reducing size of the image
+==========================
+    1. fill free space with zeros using `zerofree` or another tool
+    2. execute `VBoxManage modifyhd <path_to_vdi_file> --compact`
+
+
+
+Settings
+========
+    VBoxManage modifyvm "ubuntu_12.04" --nic2 hostonly --hostonlyadapter2 vboxnet0 --usbehci off --accelerate3d off
+
+    VBoxManage createvm —name lubuntu —ostype Linux —register —basefolder ~/.VirtualBox/ 
+    VBoxManage modifyvm lubuntu —memory 1024 —bioslogodisplaytime 0 —audio none 
+    VBoxManage storagectl lubuntu —name HDD —add sata 
+    VBoxManage storageattach lubuntu —medium ~/.VirtualBox/lubuntu/lubuntu.vdi —storagectl HDD —port 1 —type hdd 
+    VBoxManage sharedfolder add lubuntu —name “shareddir” —hostpath “/home/aleks/.VirtualBox/shareddir”
+
+    VBoxManage hostonlyif ipconfig vboxnet0 —ip 10.10.10.1 
+    VBoxManage modifyvm lubuntu —nic2 hostonly —hostonlyadapter2 vboxnet0
+
+
+
+Keyboard
+========
+If a combination of keys is intercepted by the X server of a hosting computer,
+the guest believes that some of the keys in this combination remain pressed.
+This may result in strange reaction of the guest to keyboard input later. The
+solution is to 'release' these keys by pressing and releasing them.
