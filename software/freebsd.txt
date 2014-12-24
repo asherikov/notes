@@ -1,0 +1,38 @@
+Changing LCD brightness on HP 8470p
+===================================
+
+1) acpi (as well as sysctl) does not work
+
+    a) install /usr/ports/sysutils/acpi_call
+    b) kldload acpi_call
+    c) Change brightness:
+        acpidump -dt out.asl 
+
+        acpi_call -v -p '\_SB.PCI0.GFX0.DD02._BCM' -i '9'
+        acpi_call -v -p '\_SB.PCI0.GFX0.DD02._BQC'
+
+    This patch does not help
+        https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=190186
+
+2) intel_backlight from intel-gpu-tools works
+
+    a) git clone git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+
+    b) Downgrade to version 1.3 (due to cairo dependency)
+        git checkout e466360df9ca2d43754e825eb496d8dd23c9ccf0
+
+    c) Generate configure script
+        libtoolize
+        autoreconf
+        automake --add-missing
+
+    d) Run configure script
+        ./configure PYTHON_VERSION=3.4 --disable-tests
+
+    e) Fix compilation due to missing mmap64().
+        download  http://people.freebsd.org/~peter/emm64/libemm64.h
+        add #include "libemm64.h" to 'lib/drmtest.c'
+
+    f) make install
+
+    g) Apparently needs to be run by root
