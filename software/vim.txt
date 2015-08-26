@@ -59,6 +59,20 @@ Break the long lines in a file to the length defined by the 'textwidth' option
 
 
 
+Canging case
+============
+
+U/u/~ in the visual mode.
+
+
+
+Basic arithmetic
+================
+
+C-x / C-a  -- decrement/increment a number.
+
+
+
 Movement
 ========
     % - jump to matching

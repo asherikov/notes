@@ -12,3 +12,23 @@ Checkout a file deleted several commits ago
 ===========================================
     git rev-list -n 1 HEAD -- <deleted_file_path>
     git checkout <deleting_commit>^ -- <deleted_file_path>
+
+
+Getting new branch
+==================
+    git fetch origin [remote-branch]:[new-local-branch]
+
+
+Integrating submodule in the repository
+=======================================
+    http://stackoverflow.com/questions/1759587/un-submodule-a-git-submodule/1789374#1789374
+
+    git remote add sub <submodule_repository>
+    git fetch sub
+    git merge -s ours --no-commit sub/master
+    git rm --cached submodule/path
+    git rm .gitmodules
+    rm -Rf submodule/path/.git*
+    git add submodule/path
+    git commit
+    git remote rm sub

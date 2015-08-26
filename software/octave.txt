@@ -29,6 +29,9 @@ Setting: A script which redraws and prints a figure iteratively.
 Problem: If the X-windows screen where the script is running is not active,
 printing does not work.
 
+Should be fixed in the new versions:
+http://octave.1599824.n4.nabble.com/Offscreen-rendering-with-OSMesa-and-gl2ps-td4667963.html
+
 
 
 Printing figures with overlayed axes
@@ -46,3 +49,25 @@ mangled. The first axis is partially drawn on the top of the second one.
 
 Workaround: Draw and print each axis separately, then overlay eps files as
 described in 'postscript_pdf.txt'.
+
+
+Compatibility with MATLAB
+=========================
+                                MATLAB          Octave
+---------------------------------------------------------------------
+Empty cell                      {}              cell(), {}
+
+or(1)                           fails           works
+
+some_array{end+1} = 1           not supported   supported
+
+Default values for function     not supported   supported
+parameters
+
+Splitting a string with
+    strsplit('str', '_')        not supported   supported
+    regexp('str','_','split')   supported       supported
+
+Broadcasting when using         not supported   supported
+cellfun()
+---------------------------------------------------------------------

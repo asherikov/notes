@@ -10,7 +10,11 @@ Commands
 
     addcol
     addrow
+    diag -- construct block diagonal matrix
+
     zeromatrix(2,5)
+    zerofor(M)
+
     display2d : false
     tex()
 
