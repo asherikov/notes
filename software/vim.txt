@@ -9,8 +9,8 @@ I dont remeber what it does
 
 
 
-Execute command in each open file
-=================================
+Execute command in all opened files
+===================================
     (argdo, bufdo)
     :bufdo! %s/set_global_options;//ge
 

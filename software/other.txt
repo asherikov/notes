@@ -16,14 +16,28 @@ Get links from an html file
     lynx -dump -listonly "<file>" | grep '<mask>' | cut -f 3- -d ' ' | sort | uniq > list
 
 
+
 Recursive downloading
 =====================
     wget -w 1 -e robots=off -r -c -nH -d --no-parent --restrict-file-names=nocontrol -A <extensions> --reject-regex <mask> <url>
 
 
+
 Ignore mismatching keys when connecting with ssh
 ================================================
     -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+
+
+
+SSH per host configuration
+==========================
+    IdentitiesOnly yes  # do not send all identities
+    Host something.com
+        IdentityFile ~/.ssh/id_rsa
+        Port 5399
+    Host other-github
+        Hostname=github.com
+        IdentityFile=~/.ssh/other_id_rsa
 
 
 
@@ -34,6 +48,13 @@ On the client:
 
 On the server:
     xhost +inet:10.10.10.2
+
+
+
+HDMI output in X
+================
+    xrandr --output HDMI3 --auto --right-of LVDS1
+    xrandr --output HDMI3 --off
 
 
 
