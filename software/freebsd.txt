@@ -6,7 +6,7 @@ Changing LCD brightness on HP 8470p
     a) install /usr/ports/sysutils/acpi_call
     b) kldload acpi_call
     c) Change brightness:
-        acpidump -dt out.asl 
+        acpidump -dt out.asl
 
         acpi_call -v -p '\_SB.PCI0.GFX0.DD02._BCM' -i '9'
         acpi_call -v -p '\_SB.PCI0.GFX0.DD02._BQC'
@@ -39,4 +39,17 @@ When the plugin port has been updated and reinstalled, each user must run:
 
 Ports
 =====
-    Create plist automatically: make makeplist
+    - Create plist automatically: make makeplist
+    - Configure ports recursively: make config-recursive
+
+
+Delete old files after installworld
+===================================
+    make BATCH_DELETE_OLD_FILES=true delete-old delete-old-libs
+
+
+/tmp noexec flag
+================
+    'noexec' flag for /tmp causes a failure during installworld:
+    'Unable to determine compiler type for CC=cc'
+    https://forums.freebsd.org/threads/42969/

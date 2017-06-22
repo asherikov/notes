@@ -12,6 +12,11 @@ Display log with file names
     git log --name-status
 
 
+Log beyond renames
+==================
+    git log --follow
+
+
 Checkout a file deleted several commits ago
 ===========================================
     git rev-list -n 1 HEAD -- <deleted_file_path>
@@ -41,3 +46,48 @@ Integrating submodule in the repository
 set user.name and user.email explicitly before commit
 =====================================================
     git config --global user.useconfigonly true
+
+
+Mirroring
+=========
+    https://help.github.com/articles/duplicating-a-repository/#mirroring-a-repository
+
+    git clone --bare <old-repository>
+    cd old-repository.git
+    git push --mirror <new-repository>
+
+    git remote set-url origin <new-repository>
+
+    git submodule sync
+
+
+Delete branch
+=============
+    git branch -D <branch>
+    git push origin --delete <branch>
+    git fetch --all --prune
+
+
+undo a commit
+=============
+    git reset HEAD~1
+
+
+Relocate
+========
+    git remote add new-origin <new-origin>
+    git push --all new-origin
+    git push --tags new-origin
+    git remote rm origin
+    git remote rename new-origin origin
+
+
+Export code
+===========
+    git checkout-index -a -f --prefix=/destination/path/
+
+
+Switch submodule
+================
+    git submodule sync
+    git submodule update --init --recursive --remote

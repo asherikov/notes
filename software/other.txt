@@ -1,15 +1,3 @@
-Sort installed packages by size in Ubuntu
-=========================================
-    dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | sort -n
-
-
-
-Purge removed packages in Ubuntu
-=========================================
-    dpkg -l | grep ^rc | awk '{print $2}' | xargs dpkg -P
-
-
-
 Get links from an html file
 ===========================
     lynx -dump -listonly "<file>" | grep '<mask>' | awk '{print $2}' | sort | uniq > list
@@ -44,7 +32,7 @@ SSH per host configuration
 Remote X server
 ===============
 On the client:
-    export DISPLAY=10.10.10.1:0 
+    export DISPLAY=10.10.10.1:0
 
 On the server:
     xhost +inet:10.10.10.2
@@ -66,7 +54,21 @@ Man to text
 
 RSS feeds from youtube (works after removal of the old API, 05.2015)
 ====================================================================
-    youtube.com/feeds/videos.xml?user=xxxxxx 
+    youtube.com/feeds/videos.xml?user=xxxxxx
     youtube.com/feeds/videos.xml?channel_id=xxxxxx
 
     see http://stackoverflow.com/questions/29752447/how-to-get-a-youtube-channel-rss-feed-after-2015-april-20-without-v3-api
+
+
+
+Prevent creation of 'fontconfig' folder in the home directory
+=============================================================
+    http://forums.debian.net/viewtopic.php?t=87548
+
+    edit <cachedir> parameter in /usr/local/etc/fonts/fonts.conf (/etc/fonts/fonts.conf)
+
+
+
+Force Firefox to open a new window on the active desktop
+========================================================
+    browser.link.open_newwindow.override.external;2

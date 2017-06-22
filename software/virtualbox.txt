@@ -17,14 +17,15 @@ Settings
 ========
     VBoxManage modifyvm "ubuntu_12.04" --nic2 hostonly --hostonlyadapter2 vboxnet0 --usbehci off --accelerate3d off
 
-    VBoxManage createvm —name lubuntu —ostype Linux —register —basefolder ~/.VirtualBox/ 
-    VBoxManage modifyvm lubuntu —memory 1024 —bioslogodisplaytime 0 —audio none 
-    VBoxManage storagectl lubuntu —name HDD —add sata 
-    VBoxManage storageattach lubuntu —medium ~/.VirtualBox/lubuntu/lubuntu.vdi —storagectl HDD —port 1 —type hdd 
-    VBoxManage sharedfolder add lubuntu —name “shareddir” —hostpath “/home/aleks/.VirtualBox/shareddir”
+    VBoxManage createvm --name lubuntu --ostype Linux --register --basefolder ~/.VirtualBox/
+    VBoxManage modifyvm lubuntu --memory 1024 --bioslogodisplaytime 0 --audio none
+    VBoxManage storagectl lubuntu --name HDD --add sata
+    VBoxManage storageattach lubuntu --medium ~/.VirtualBox/lubuntu/lubuntu.vdi --storagectl HDD --port 1 --type hdd
+    VBoxManage sharedfolder add lubuntu --name “shareddir” --hostpath “/home/aleks/.VirtualBox/shareddir”
 
-    VBoxManage hostonlyif ipconfig vboxnet0 —ip 10.10.10.1 
-    VBoxManage modifyvm lubuntu —nic2 hostonly —hostonlyadapter2 vboxnet0
+    VBoxManage hostonlyif create vboxnet0
+    VBoxManage hostonlyif ipconfig vboxnet0 --ip 10.10.10.1
+    VBoxManage modifyvm lubuntu --nic2 hostonly --hostonlyadapter2 vboxnet0
 
 
 

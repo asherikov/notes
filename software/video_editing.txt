@@ -4,6 +4,8 @@ delete pieces before N-th second and after M-th second
 
     mencoder -ss N -endpos M -oac copy -ovc copy in.mp4 -o out.mp4
 
+Save 30 second starting from 2:30
+    ffmpeg -i in.mp4 -ss 2:30 -c copy -t 30 out.mp4
 
 
 Capture from the screen
@@ -36,6 +38,8 @@ Build video from images
 
     ffmpeg -y -f image2 -r 40 -i demo-%d.png -vcodec libx264 -vf 'crop=540:460:30:70,scale=540:trunc(ow/a/2)*2'  out.mp4
 
+    ffmpeg -y -loop 1 -t 10 -i image.png -vcodec libx264  out.mp4
+
 
 
 Empty video (black screen)
@@ -47,7 +51,11 @@ Empty video (black screen)
 Overlay text
 ============
     ffmpeg -y -i in.mp4 \
-        -vf drawtext="fontfile=/usr/local/lib/X11/fonts/dejavu/DejaVuSansMono.ttf:textfile=text.txt:fontcolor=white:fontsize=30:x=(w-text_w)/2:y=(h-text_h)/2" \
+        -vf drawtext="fontfile=Font.ttf:textfile=text.txt:fontcolor=white:fontsize=30:x=(w-text_w)/2:y=(h-text_h)/2" \
+        out.mp4
+
+    ffmpeg -y -i in.mp4 \
+        -vf drawtext="fontfile=Font.ttf:text='some text':fontcolor=white:fontsize=100:x=(w-text_w)/2:y=(h-text_h)/2" \
         out.mp4
 
 
@@ -67,6 +75,9 @@ Concatenation
     ffmpeg -y -i video1.mp4 -i video2.mp4 -i video3.mp4 \
         -filter_complex "[0:v] [1:v] concat[tmp1] ; [tmp1] [2:v] concat [vid]" -map '[vid]' -c:v libx264 out.mp4
 
+    ffmpeg -y -i video1.mp4 -i video2.mp4 -i video3.mp4 \
+        -filter_complex " [0:v] [1:v] [2:v] concat=n=3 [vid] " -map '[vid]' -c:v libx264 -pix_fmt yuv420p out.mp4
+
 
 
 Video with static image in background
@@ -75,3 +86,8 @@ Video with static image in background
         -filter_complex '[0:v][1:v]overlay=1300:150:shortest=1[vid]' -map '[vid]' \
         -c:v libx264 -y out.mp4
 
+
+Take snapshots
+==============
+    Every 5 second:
+    ffmpeg -i in.mp4 -vf fps=1/5 out%d.jpg
