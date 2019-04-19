@@ -91,3 +91,8 @@ Switch submodule
 ================
     git submodule sync
     git submodule update --init --recursive --remote
+
+
+Create an 'empty' branch
+========================
+    git checkout --orphan <branchname>

@@ -53,3 +53,8 @@ Delete old files after installworld
     'noexec' flag for /tmp causes a failure during installworld:
     'Unable to determine compiler type for CC=cc'
     https://forums.freebsd.org/threads/42969/
+
+
+Switch version
+==============
+`svn switch '^/stable/9'`

@@ -36,3 +36,8 @@ Reduce size (density of images)
 ===============================
     gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dDownsampleColorImages=true \
     -dColorImageResolution=100 -dNOPAUSE -dBATCH -sOutputFile=output.pdf input.pdf
+
+
+Join two sequential pages to one (e.g. 2xA5 -> A4)
+==================================================
+    pdfjam --nup '1x2' --no-landscape -- <filename>

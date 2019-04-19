@@ -6,6 +6,8 @@ delete pieces before N-th second and after M-th second
 
 Save 30 second starting from 2:30
     ffmpeg -i in.mp4 -ss 2:30 -c copy -t 30 out.mp4
+without audio
+    ffmpeg -i in.mp4 -ss 2:30 -c copy -an -t 30 out.mp4
 
 
 Capture from the screen

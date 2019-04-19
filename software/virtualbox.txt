@@ -35,3 +35,14 @@ If a combination of keys is intercepted by the X server of a hosting computer,
 the guest believes that some of the keys in this combination remain pressed.
 This may result in strange reaction of the guest to keyboard input later. The
 solution is to 'release' these keys by pressing and releasing them.
+
+
+
+Read-only fs issues in Linux hosts
+==================================
+Enable `host I/O cache` in the hdd controller parameters.
+
+
+Reinitialize ID after copying
+=============================
+`VBoxManage internalcommands sethduuid <vdi>`

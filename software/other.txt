@@ -66,9 +66,3 @@ Prevent creation of 'fontconfig' folder in the home directory
     http://forums.debian.net/viewtopic.php?t=87548
 
     edit <cachedir> parameter in /usr/local/etc/fonts/fonts.conf (/etc/fonts/fonts.conf)
-
-
-
-Force Firefox to open a new window on the active desktop
-========================================================
-    browser.link.open_newwindow.override.external;2
