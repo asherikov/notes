@@ -46,3 +46,8 @@ Enable `host I/O cache` in the hdd controller parameters.
 Reinitialize ID after copying
 =============================
 `VBoxManage internalcommands sethduuid <vdi>`
+
+
+User group membership
+=====================
+pw groupmod vboxusers -m <username>

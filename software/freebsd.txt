@@ -58,3 +58,13 @@ Delete old files after installworld
 Switch version
 ==============
 `svn switch '^/stable/9'`
+
+
+Bluetooth
+=========
+    hccontrol -n ubt0hci inquiry
+    hccontrol -n ubt0hci create_connection <id>
+    hccontrol -n ubt0hci write_authentication_enable 1
+    hccontrol -n ubt0hci write_encryption_mode 1
+    hccontrol -n ubt0hci read_connection_list
+    virtual_oss -S -C 2 -c 2 -r 48000 -b 16 -s 768 -R /dev/null -P /dev/bluetooth/<id> -d dsp
