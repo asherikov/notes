@@ -115,3 +115,13 @@ Movement
 
     g* - next matching search pattern under cursor.
     g# - previous matching search pattern under cursor.
+
+
+neovim
+======
+    Switched to neovim due to changed behavior of paste mode -- tabs are no
+    more replaced by spaces. This change is intentional and is not considered a
+    bug, see links below
+    https://github.com/vim/vim/issues/1078
+    https://bugs.launchpad.net/ubuntu/+source/vim/+bug/1576583
+
