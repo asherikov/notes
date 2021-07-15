@@ -10,3 +10,4 @@ Other
     media.autoplay.enabled -> false
 	keyword.enabled -> false
     dom.webnotifications.enabled -> false
+    media.cubeb.backend -> oss (pulse does not select devices properly)
