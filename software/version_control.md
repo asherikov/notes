@@ -106,6 +106,10 @@ Filter history
     git filter-branch -f --prune-empty -d /dev/shm/scratch --index-filter "git rm --cached -rf --ignore-unmatch <dir>"  <hash>..HEAD
 
 
+Ignore local changes
+--------------------
+    git update-index --assume-unchanged <file>
+
 
 data
 ====
