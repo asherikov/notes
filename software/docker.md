@@ -1,11 +1,9 @@
-- `docker pull ubuntu:16.04`
-- `docker images`
-- `docker ps -a`
-- `docker run --user root -it -v ${HOME}/dir:/dir <id> /bin/bash`
-- `docker cp ~/.bashrc <id>:/root/.bashrc`
--
+Clear build data
+----------------
+
+<https://stackoverflow.com/questions/46672001/is-it-safe-to-clean-docker-overlay2>
+
 ```
-docker start <id>
-docker exec -ti  <id> /bin/bash
-docker stop <id>
+docker buildx prune --all
+docker builder prune --all
 ```

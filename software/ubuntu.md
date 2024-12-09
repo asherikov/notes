@@ -17,3 +17,12 @@ Disable gdm
 ```
 systemctl set-default multi-user.target
 ```
+
+
+Firefox frem deb
+----------------
+
+```
+sudo add-apt-repository ppa:mozillateam/ppa
+apt install firefox-esr
+```
