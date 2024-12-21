@@ -7,3 +7,10 @@ Clear build data
 docker buildx prune --all
 docker builder prune --all
 ```
+
+Run command in container namespace
+----------------------------------
+
+```
+sudo nsenter -t $(docker inspect --format '{{.State.Pid}}' <container>) -n ping 192.168.1.1
+```
