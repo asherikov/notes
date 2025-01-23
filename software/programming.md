@@ -21,4 +21,16 @@ Searching functions in lldb
 
 Debug
 =====
-    rr-project.org
+
+Recording
+---------
+    <rr-project.org>
+
+gdb
+---
+
+### attach
+
+```
+gdb -ex continue <path to executable> `pidof <executable>`
+```

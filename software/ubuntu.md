@@ -26,3 +26,13 @@ Firefox frem deb
 sudo add-apt-repository ppa:mozillateam/ppa
 apt install firefox-esr
 ```
+
+
+Debug packages
+--------------
+<https://ubuntu.com/server/docs/debug-symbol-packages>
+
+
+DNS update
+----------
+update-systemd-resolved
